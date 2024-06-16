@@ -13,7 +13,7 @@ class CdkPyStack(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
         
-        bucket = s3.Bucket(self, "task-2-student-Bucket",
+        bucket = s3.Bucket(self, "Bucket-Crosscheck",
             removal_policy=RemovalPolicy.DESTROY,
             block_public_access = s3.BlockPublicAccess.BLOCK_ALL,
             auto_delete_objects=True,
@@ -26,7 +26,7 @@ class CdkPyStack(Stack):
             principals=[iam.ServicePrincipal("cloudfront.amazonaws.com")],
         ))
         origin_access_identity = cloudfront.OriginAccessIdentity(self, "OAI")
-        distribution = cloudfront.CloudFrontWebDistribution(self, "task-2-student-Distribution",
+        distribution = cloudfront.CloudFrontWebDistribution(self, "Cloudfront-Distribution-Crosscheck",
             origin_configs=[
                 cloudfront.SourceConfiguration(
                     s3_origin_source=cloudfront.S3OriginConfig(
@@ -36,7 +36,7 @@ class CdkPyStack(Stack):
                     behaviors=[cloudfront.Behavior(is_default_behavior=True)]
                 )
             ],
-            comment="This is the distribution for task-2-RomanNeudakh"
+            comment="This is the distribution for crosschecks-RomanNeudakh"
         )
 
         bucket.grant_read(origin_access_identity)
