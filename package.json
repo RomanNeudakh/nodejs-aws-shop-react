@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "cdk-deploy":"cdk deploy --app \"python cdk_py/app.py\"",
-    "upload": "aws s3 sync ./dist s3://cdkpystack-testmybucketad56e835-bzc5kpfomdwi --delete",
+    "cdk-destroy":"cdk destroy --app \"python cdk_py/app.py\"",
     "start": "vite",
     "build": "tsc && vite build",
     "preview": "npm run build && vite preview",
