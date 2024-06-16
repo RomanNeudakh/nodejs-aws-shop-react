@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "cdk-deploy":"cdk deploy --app \"python cdk_py/app.py\"",
+    "upload": "aws s3 sync ./dist s3://cdkpystack-testmybucketad56e835-bzc5kpfomdwi --delete",
     "start": "vite",
     "build": "tsc && vite build",
     "preview": "npm run build && vite preview",
@@ -10,7 +12,8 @@
     "test:ui": "vitest --ui",
     "test:coverage": "vitest run --coverage",
     "lint": "eslint --ignore-path .gitignore --fix src",
-    "prettier": "prettier src --write"
+    "prettier": "prettier src --write",
+    "build-and-deploy": "npm run build && npm run cdk-deploy"
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
