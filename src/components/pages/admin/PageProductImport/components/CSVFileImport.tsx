@@ -33,14 +33,10 @@ export default function CSVFileImport({ url, title }: CSVFileImportProps) {
         name: encodeURIComponent(file?.name || false),
       },
       headers: { 
-        Authorization: authorizationToken
+        'Content-Type': '',
+        'Authorization': authorizationToken
       }
     });
-    console.log("File to upload: ", file?.name || false);
-    console.log("Uploading to: ", response.data);
-    console.log("file ", file);
-    console.log("file_type ", file?.type);
-
     const result = await fetch(response.data, {
       method: "PUT",
       body: file,
